@@ -8,9 +8,6 @@ router.get('/', function(req, res, next) {
   res.json({ 
     message: 'Welcome to Express API',
     version: '1.0.0',
-    endpoints: {
-      users: '/users' 
-    }
   });
 });
 

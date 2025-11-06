@@ -1,9 +1,5 @@
 import { z } from "zod";
 
-/**
- * Register validation schema
- * Validates email, password, and optional name
- */
 export const registerSchema = z.object({
   email: z
     .string()
@@ -20,10 +16,6 @@ export const registerSchema = z.object({
     .optional(),
 });
 
-/**
- * Login validation schema
- * Validates email and password
- */
 export const loginSchema = z.object({
   email: z
     .string()
@@ -34,7 +26,6 @@ export const loginSchema = z.object({
     .min(1, "Password is required"),
 });
 
-// Type inference for TypeScript
 export type RegisterInput = z.infer<typeof registerSchema>;
 export type LoginInput = z.infer<typeof loginSchema>;
 

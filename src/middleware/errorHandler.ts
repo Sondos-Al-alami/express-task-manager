@@ -2,17 +2,12 @@ import type { Request, Response, NextFunction } from "express";
 import { Prisma } from "@prisma/client";
 import { sendError } from "../utils/errors.js";
 
-/**
- * Global error handling middleware
- * Catches all errors and returns standardized error responses
- */
 export const errorHandler = (
   err: unknown,
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  // Ensure we have an Error object
   if (!(err instanceof Error)) {
     return sendError(
       res,
@@ -22,7 +17,6 @@ export const errorHandler = (
     );
   }
 
-  // Prisma validation errors
   if (err instanceof Prisma.PrismaClientValidationError) {
     return sendError(
       res,
@@ -32,7 +26,6 @@ export const errorHandler = (
     );
   }
 
-  // Default to 500 Internal Server Error
   const statusCode = 500;
   const message = process.env.NODE_ENV === "production"
     ? "Internal server error"
@@ -46,10 +39,6 @@ export const errorHandler = (
   );
 };
 
-/**
- * 404 Not Found handler
- * Must be placed after all routes but before error handler
- */
 export const notFoundHandler = (
   req: Request,
   res: Response,

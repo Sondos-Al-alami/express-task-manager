@@ -1,8 +1,5 @@
 import type { Response } from "express";
 
-/**
- * Standard error response format matching validation errors
- */
 export interface ErrorDetail {
   field?: string;
   message: string;
@@ -13,10 +10,6 @@ export interface ErrorResponse {
   details?: ErrorDetail[];
 }
 
-/**
- * Helper function to send standardized error responses
- * Matches the format used by validation middleware
- */
 export const sendError = (
   res: Response,
   statusCode: number,
@@ -30,10 +23,6 @@ export const sendError = (
   return res.status(statusCode).json(response);
 };
 
-/**
- * Helper function for single error messages (simplified format)
- * Converts a simple error message to the standard format
- */
 export const sendSimpleError = (
   res: Response,
   statusCode: number,

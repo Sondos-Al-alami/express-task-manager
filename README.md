@@ -1,14 +1,17 @@
-# Project Express
+# Express Task Manager
 
-An Express.js API application created with the Express generator.
+A RESTful API for managing tasks built with Express.js, TypeScript, Prisma, and PostgreSQL.
 
 ## Features
 
-- ✅ Express.js web framework
+- ✅ Express.js web framework with TypeScript
 - ✅ Security middleware (Helmet, CORS)
 - ✅ Environment variable management (dotenv)
-- ✅ Database-ready with Prisma
-- ✅ Authentication packages installed (bcrypt, JWT)
+- ✅ PostgreSQL database with Prisma ORM
+- ✅ JWT-based authentication
+- ✅ Password hashing with bcryptjs
+- ✅ Request validation with Zod
+- ✅ Standardized error handling
 - ✅ Development server with auto-reload (nodemon)
 
 ## Getting Started
@@ -23,8 +26,8 @@ An Express.js API application created with the Express generator.
 
 1. Clone the repository:
 ```bash
-git clone <your-repo-url>
-cd project-express
+git clone https://github.com/Sondos-Al-alami/express-task-manager.git
+cd express-task-manager
 ```
 
 2. Install dependencies:
@@ -32,8 +35,12 @@ cd project-express
 npm install
 ```
 
-3. Create a `.env` file in the root directory:
+3. Set up the database and create a `.env` file in the root directory:
 ```bash
+# Run Prisma migrations
+npx prisma migrate dev
+
+# Create .env file
 PORT=3000
 NODE_ENV=development
 DATABASE_URL="postgresql://user:password@localhost:5432/mydb"
@@ -53,35 +60,41 @@ npm start
 
 The server will be running at `http://localhost:3000`
 
-## API Endpoints
 
-- `GET /` - API welcome message
-- `GET /users` - Users resource
+## Technology Stack
 
-## Project Structure
+- **Runtime**: Node.js
+- **Framework**: Express.js
+- **Language**: TypeScript
+- **Database**: PostgreSQL
+- **ORM**: Prisma
+- **Validation**: Zod
+- **Authentication**: JWT (jsonwebtoken)
+- **Password Hashing**: bcryptjs
 
+
+## Development
+
+### Database Migrations
+
+```bash
+# Create a new migration
+npx prisma migrate dev --name migration_name
+
+# Apply migrations
+npx prisma migrate deploy
+
+# Generate Prisma Client
+npx prisma generate
 ```
-project-express/
-├── bin/
-│   └── www                 # Server entry point
-├── routes/
-│   ├── index.js           # Home route
-│   └── users.js           # Users routes
-├── public/                # Static files
-├── app.js                 # Express app configuration
-├── package.json           # Dependencies and scripts
-└── .env                   # Environment variables (create this)
+
+### Prisma Studio
+
+View and edit your database with Prisma Studio:
+
+```bash
+npx prisma studio
 ```
-
-## Next Steps
-
-1. **Database Setup**: Initialize Prisma with `npx prisma init`
-2. **Create Models**: Define your database schema in `prisma/schema.prisma`
-3. **Add Authentication**: Implement JWT-based auth using the installed packages
-4. **Create API Routes**: Add more routes in the `routes/` directory
-5. **Add Validation**: Consider using `express-validator` for request validation
-6. **Error Handling**: Add global error handling middleware
-7. **Testing**: Set up testing with Jest or Mocha
 
 ## Available Scripts
 
@@ -94,8 +107,10 @@ This app includes:
 - Helmet for HTTP security headers
 - CORS configuration
 - Environment variables for sensitive data
-- Ready for bcrypt password hashing
-- JWT authentication support
+- Password hashing with bcryptjs
+- JWT authentication with secure token validation
+- Request validation to prevent invalid data
+- Standardized error handling to avoid information leakage
 
 ## License
 

@@ -8,5 +8,4 @@ const router = express.Router();
 router.post("/register", validate(registerSchema), resisterHandler);
 router.post("/login", validate(loginSchema), loginHandler);
 
-// router.get("/me", authenticateToken, getUserHandler);
 export default router;
