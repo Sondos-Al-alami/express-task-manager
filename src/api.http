@@ -1,0 +1,10 @@
+##register
+
+POST /api/auth/register
+Content-Type: application/json
+
+{
+  "email": "alice@example.com",
+  "password": "supersecret",
+  "name": "Alice"
+}
